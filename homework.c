@@ -12,7 +12,9 @@ typedef struct scj{
 void calculation();
 void rank();
 void no_rank();
-void search(); 
+int count();
+void search();
+void statistic();
 void outputcj();
 FILE *fp = NULL;
 void main(){
@@ -35,7 +37,8 @@ void main(){
 			case 3:calculation();break;
 			case 4:rank(n);break;
 			case 5:no_rank();break;
-			case 6:search()
+			case 6:search();break;
+			case 7:statistic();break;
 			case 8:outputcj();break;
 		}
 	}
@@ -141,14 +144,58 @@ void no_rank(){
 	}
 }
 void search(){
-	form lsit[5];
-	int i,j;
+	char sname[20];
+	int i,j=-1;
 	rank();
 	printf("请输入学生姓名（拼音）:\n");
-	for(i=0;i<n;i++){
-		 
+	scanf("%s",sname);
+	for(i=0;i<n;i++)
+		if(strcmp(rankf[i].name,sname)==0)
+			j=i;
+	if(j=-1)
+		printf("没有该学生的记录");
+	else
+		printf("No.%s %s\'s 排名是 %d, 成绩是%d,%d,%d"); 
+}
+int count(int *p){
+	int div;
+	div=*p/10;
+	switch(div){
+			case:10 case:9 A++;break;
 	}
 }
+void statistic(form *cj[SIZE]){
+	int s1[5]={0,0,0,0,0};
+	int s2[5]={0,0,0,0,0};
+	int s3[5]={0,0,0,0,0};
+	int i,d1,d2,d3;
+	for(i=0;i<SIZE;i++){
+		d1=cj->grade1/10;
+		d2=cj->grade2/10;
+		d3=cj->grade3/10;
+		switch(d1){
+			case:10 case:9 s1[0]++;break;
+			case:8 s1[1]++;break;
+			case:7 s1[2]++;break;
+			case:6 s1[3]++;break;
+			default: s1[4]++;
+		}
+		switch(d2){
+			case:10 case:9 s2[0]++;break;
+			case:8 s2[1]++;break;
+			case:7 s2[2]++;break;
+			case:6 s2[3]++;break;
+			default: s2[4]++;
+		}
+		switch(d3){
+			case:10 case:9 s3[0]++;break;
+			case:8 s3[1]++;break;
+			case:7 s3[2]++;break;
+			case:6 s3[3]++;break;
+			default: s3[4]++;
+		}
+	}
+}	
 void inputcj(form cj[SIZE],int flag){
 /*	
 */
